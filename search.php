@@ -42,10 +42,14 @@ get_header();
       <div class="badge-agency-sm" style="margin:8px 16px 0;">代理正貨</div>
       <?php endif; ?>
       <div class="prod-card-img">
-        <img src="<?php echo esc_url($img_url); ?>"
-             alt="<?php echo esc_attr($title); ?>"
-             loading="lazy"
-             onerror="this.parentElement.innerHTML='<div style=&quot;font-size:2.8rem;display:flex;align-items:center;justify-content:center;width:100%;height:100%;&quot;>&#127870;</div>'">
+        <?php if ($img_url): ?>
+          <img src="<?php echo esc_url($img_url); ?>"
+               alt="<?php echo esc_attr($title); ?>"
+               loading="lazy"
+               onerror="this.parentElement.innerHTML='<div class=&quot;prod-img-placeholder&quot;>&#127870;</div>'">
+        <?php else: ?>
+          <div class="prod-img-placeholder">🍾</div>
+        <?php endif; ?>
         <?php $flag = mth_country_flag($country); if ($flag): ?><span class="prod-flag"><?php echo esc_html($flag); ?></span><?php endif; ?>
       </div>
       <div class="prod-card-body">
