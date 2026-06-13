@@ -192,7 +192,7 @@ get_header();
     if ($query->have_posts()):
       while ($query->have_posts()): $query->the_post();
         $img_url = get_the_post_thumbnail_url(get_the_ID(), 'medium');
-        if (!$img_url) continue; // 冇精選圖片就跳過
+        // 冇精選圖片唔再 skip，會顯示米色 placeholder，避免 count mismatch
         $name_zh = get_the_title();
         $name_en = get_post_meta(get_the_ID(), 'name_en', true);
         $spec    = get_post_meta(get_the_ID(), 'spec', true);

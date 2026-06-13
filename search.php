@@ -28,7 +28,7 @@ get_header();
     <?php while (have_posts()): the_post();
       $pid     = get_the_ID();
       $img_url = get_the_post_thumbnail_url($pid, 'medium');
-      if (!$img_url) continue; // 冇精選圖片就跳過
+      // 冇精選圖片唔再 skip，placeholder fallback
       $title   = get_the_title();
       $name_en = get_post_meta($pid, 'name_en', true);
       $spec    = get_post_meta($pid, 'spec', true);
