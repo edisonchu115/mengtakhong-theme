@@ -1,0 +1,36 @@
+# Backup files
+*.bak
+*.bak-*
+*.backup
+functions.php.bak-*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+debug.log
+
+# Sensitive — never commit
+*.env
+.env
+ftp-credentials.*
+wp-config.php
+
+# Temp / build
+node_modules/
+vendor/
+*.zip
+*.tar.gz
+
+# WordPress upload artifacts that might land in theme by mistake
+uploads/
