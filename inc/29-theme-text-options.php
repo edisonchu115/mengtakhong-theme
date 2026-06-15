@@ -87,6 +87,88 @@ function mth_text_fields() {
                 'footer_contact_title' => array('label'=>'頁尾「聯絡我們」標題','default'=>'聯絡我們'),
             ),
         ),
+
+        'about_hero' => array(
+            'title' => '📖 關於我們頁 — Hero',
+            'desc'  => '/about/ 頁面頂部',
+            'fields' => array(
+                'about_eyebrow'  => array('label'=>'頂部英文','default'=>'About Us'),
+                'about_title_1'  => array('label'=>'標題第 1 段','default'=>'關於'),
+                'about_title_2'  => array('label'=>'標題第 2 段 (金色)','default'=>'明德行'),
+                'about_subtitle' => array('label'=>'副標題','default'=>'澳門本地專業洋酒飲品批發代理，深耕市場逾廿五年','type'=>'textarea'),
+            ),
+        ),
+        'about_stats' => array(
+            'title' => '📖 關於我們頁 — 5 個統計數字',
+            'desc'  => '5 個 box，全部手動填',
+            'fields' => array(
+                'about_stat1_num'=>array('label'=>'統計 1 數字','default'=>'1998'),
+                'about_stat1_label'=>array('label'=>'統計 1 標籤','default'=>'年成立'),
+                'about_stat2_num'=>array('label'=>'統計 2 數字','default'=>'25+'),
+                'about_stat2_label'=>array('label'=>'統計 2 標籤','default'=>'年行業經驗'),
+                'about_stat3_num'=>array('label'=>'統計 3 數字','default'=>'234'),
+                'about_stat3_label'=>array('label'=>'統計 3 標籤','default'=>'款產品'),
+                'about_stat4_num'=>array('label'=>'統計 4 數字','default'=>'8'),
+                'about_stat4_label'=>array('label'=>'統計 4 標籤','default'=>'大產品系列'),
+                'about_stat5_num'=>array('label'=>'統計 5 數字','default'=>'B2B'),
+                'about_stat5_label'=>array('label'=>'統計 5 標籤','default'=>'專業批發服務'),
+            ),
+        ),
+        'about_body' => array(
+            'title' => '📖 關於我們頁 — 內文',
+            'desc'  => '公司簡介、業務、客戶、聯絡',
+            'fields' => array(
+                'about_intro_title' => array('label'=>'第 1 段標題','default'=>'公司簡介'),
+                'about_intro_p1'    => array('label'=>'第 1 段 — 段落 1','default'=>'明德行國際有限公司（Meng Tak Hong International Co., Ltd.）於1998年在澳門成立，是澳門本地歷史最悠久的洋酒及飲品批發代理商之一。','type'=>'textarea'),
+                'about_intro_p2'    => array('label'=>'第 1 段 — 段落 2','default'=>'多年來，我們致力為澳門各類餐飲及零售業客戶提供穩定、優質的產品供應，建立了廣泛的合作網絡及良好的市場口碑。','type'=>'textarea'),
+                'about_biz_title'   => array('label'=>'第 2 段標題','default'=>'主要業務'),
+                'about_biz_items'   => array('label'=>'業務列表 (每行一項)','default'=>"蘇格蘭、愛爾蘭、美國、日本單一麥芽及調和威士忌代理\n法國干邑及拔蘭地進口\n優質葡萄酒及香檳（法國、澳洲、葡萄牙、智利等）\n日本清酒、燒酎、日本威士忌\n韓國燒酒（真露、舞鶴等）及亞洲飲品食品\n琴酒、伏特加、冧酒、龍舌蘭及各式力嬌酒\n中國白酒（茅台、習酒等）\n各式啤酒及非酒精飲料",'type'=>'textarea'),
+                'about_clients_title' => array('label'=>'第 3 段標題','default'=>'客戶群體'),
+                'about_clients_intro' => array('label'=>'第 3 段引言','default'=>'我們主要服務 B2B 批發客戶，包括：'),
+                'about_clients_items' => array('label'=>'客戶列表 (每行一項)','default'=>"酒店、度假村及高級餐廳\n酒吧、夜店及娛樂場所\n超市、便利店及士多\n企業及活動採購\n私人買酒用家",'type'=>'textarea'),
+                'about_contact_title' => array('label'=>'第 4 段標題','default'=>'聯絡我們'),
+                'about_contact_p'     => array('label'=>'第 4 段內文','default'=>'如需查詢箱價、最新優惠或有任何採購需要，歡迎致電或透過以下方式聯絡我們的銷售團隊。','type'=>'textarea'),
+                'about_contact_btn'   => array('label'=>'按鈕文字','default'=>'聯絡我們'),
+            ),
+        ),
+
+        'contact_hero' => array(
+            'title' => '📞 聯絡頁 — Hero',
+            'desc'  => '/contact/ 頁面頂部',
+            'fields' => array(
+                'contact_eyebrow'  => array('label'=>'頂部英文','default'=>'Contact Us'),
+                'contact_title_1'  => array('label'=>'標題第 1 段','default'=>'聯絡'),
+                'contact_title_2'  => array('label'=>'標題第 2 段 (金色)','default'=>'我們'),
+                'contact_subtitle' => array('label'=>'副標題','default'=>'歡迎 B2B 客戶查詢批發報價及補貨事宜','type'=>'textarea'),
+            ),
+        ),
+        'contact_body' => array(
+            'title' => '📞 聯絡頁 — 內文',
+            'desc'  => '聯絡資料區（地址/電話/Email/辦公時間）',
+            'fields' => array(
+                'contact_info_title' => array('label'=>'區塊標題','default'=>'聯絡資料'),
+                'contact_info_subtitle' => array('label'=>'區塊副標題（公司英文名）','default'=>'Meng Tak Hong International Co., Ltd.'),
+                'contact_addr_label'=> array('label'=>'地址欄 label','default'=>'地址'),
+                'contact_addr_val'  => array('label'=>'地址欄內容','default'=>'澳門黑沙環慕拉士大馬路195號 南嶺工業大廈4樓F座','type'=>'textarea'),
+                'contact_phone_label'=> array('label'=>'電話欄 label','default'=>'電話'),
+                'contact_email_label'=> array('label'=>'電郵欄 label','default'=>'電郵'),
+                'contact_hours_label'=> array('label'=>'辦公時間 label','default'=>'辦公時間'),
+                'contact_hours_val'  => array('label'=>'辦公時間內容','default'=>'週一至週六 9:00 – 18:00'),
+                'contact_show_wa'    => array('label'=>'顯示 WhatsApp 按鈕？(填 yes/no)','default'=>'no'),
+                'contact_wa_url'     => array('label'=>'WhatsApp 連結','default'=>'https://wa.me/85366687448'),
+                'contact_map_open_label' => array('label'=>'地圖「在 Google Maps 開啟」按鈕字','default'=>'在 Google Maps 開啟'),
+            ),
+        ),
+
+        'brands_hero' => array(
+            'title' => '🏷️ 品牌頁',
+            'desc'  => '/brands/ 頁面',
+            'fields' => array(
+                'brands_title'    => array('label'=>'頁面標題','default'=>'代理品牌'),
+                'brands_subtitle' => array('label'=>'副標題','default'=>'Our Brands · 明德行代理及進口產品品牌'),
+                'brands_empty'    => array('label'=>'未有品牌時嘅提示','default'=>'品牌資料載入中，請稍後再試。'),
+            ),
+        ),
     );
 }
 

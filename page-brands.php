@@ -58,8 +58,8 @@
 </style>
 
 <div class="brands-hero">
-  <h1>代理品牌</h1>
-  <p>Our Brands &middot; 明德行代理及進口產品品牌</p>
+  <h1><?php echo esc_html(mth_text('brands_title', '代理品牌')); ?></h1>
+  <p><?php echo esc_html(mth_text('brands_subtitle', 'Our Brands · 明德行代理及進口產品品牌')); ?></p>
 </div>
 
 <div class="brands-body">
@@ -93,7 +93,7 @@
       endwhile;
       wp_reset_postdata();
     else: ?>
-      <div class="brands-empty">品牌資料載入中，請稍後再試。</div>
+      <div class="brands-empty"><?php echo esc_html(mth_text('brands_empty', '品牌資料載入中，請稍後再試。')); ?></div>
     <?php endif; ?>
   </div>
 </div>
