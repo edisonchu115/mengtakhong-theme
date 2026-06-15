@@ -13,6 +13,23 @@ function mth_render_csv_tool() {
         <?php if (isset($_GET['err'])): ?>
             <div class="notice notice-error"><p>匯入失敗：<?php echo esc_html($_GET['err']); ?></p></div>
         <?php endif; ?>
+        <?php
+        $errors = get_transient('mth_csv_import_errors');
+        if (!empty($errors) && is_array($errors)):
+            $err_url = wp_nonce_url(admin_url('admin-post.php?action=mth_download_csv_errors'), 'mth_csv_errors');
+        ?>
+            <div class="notice notice-warning">
+                <p><strong>⚠️ <?php echo count($errors); ?> 行匯入失敗：</strong>
+                <a href="<?php echo esc_url($err_url); ?>" class="button button-small">下載 error.csv</a></p>
+                <ul style="margin:6px 0 6px 20px;list-style:disc;font-size:12px;max-height:200px;overflow:auto;">
+                <?php foreach (array_slice($errors, 0, 20) as $e): ?>
+                    <li>第 <?php echo (int)$e['line']; ?> 行：<?php echo esc_html($e['reason']); ?>
+                    <?php if (!empty($e['title'])): ?>（<?php echo esc_html($e['title']); ?>）<?php endif; ?></li>
+                <?php endforeach; ?>
+                <?php if (count($errors) > 20): ?><li>...仲有 <?php echo count($errors)-20; ?> 行（睇 CSV）</li><?php endif; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
 
         <h2 style="margin-top:30px;">匯出</h2>
         <p>下載所有產品成 CSV 檔。可用 Excel 或 Google Sheets 打開編輯，然後再匯入更新。</p>
@@ -103,15 +120,18 @@ add_action('admin_post_mth_import_csv', function() {
     $idx = array_flip(array_map('trim', $headers));
 
     $created = 0; $updated = 0; $processed = 0;
+    $errors  = array();
+    $line    = 1; // header is line 1
     $valid_countries = array_merge(array(''), array_keys(mth_countries()));
 
     while (($row = fgetcsv($h)) !== false) {
+        $line++;
         if (empty(array_filter($row))) continue;
         $processed++;
 
         $id     = isset($idx['id'])    && isset($row[$idx['id']])    ? (int) $row[$idx['id']] : 0;
         $title  = isset($idx['title']) && isset($row[$idx['title']]) ? sanitize_text_field($row[$idx['title']]) : '';
-        if (!$title) continue;
+        if (!$title) { $errors[] = array('line'=>$line, 'reason'=>'缺 title', 'row'=>$row); continue; }
 
         $name_en = isset($idx['name_en']) && isset($row[$idx['name_en']]) ? sanitize_text_field($row[$idx['name_en']]) : '';
         $spec    = isset($idx['spec'])    && isset($row[$idx['spec']])    ? sanitize_text_field($row[$idx['spec']])    : '';
@@ -123,15 +143,19 @@ add_action('admin_post_mth_import_csv', function() {
         if (!in_array($country, $valid_countries, true)) $country = '';
 
         if ($id > 0 && get_post_type($id) === 'mth_product') {
-            wp_update_post(array('ID' => $id, 'post_title' => $title));
+            $r = wp_update_post(array('ID' => $id, 'post_title' => $title), true);
+            if (is_wp_error($r)) { $errors[] = array('line'=>$line,'reason'=>$r->get_error_message(),'title'=>$title,'row'=>$row); continue; }
             $updated++;
+        } elseif ($id > 0) {
+            $errors[] = array('line'=>$line,'reason'=>'ID '.$id.' 唔存在 / 唔係產品','title'=>$title,'row'=>$row);
+            continue;
         } else {
             $id = wp_insert_post(array(
                 'post_title'  => $title,
                 'post_type'   => 'mth_product',
                 'post_status' => 'publish',
-            ));
-            if (is_wp_error($id) || !$id) continue;
+            ), true);
+            if (is_wp_error($id) || !$id) { $errors[] = array('line'=>$line,'reason'=> is_wp_error($id)?$id->get_error_message():'insert failed','title'=>$title,'row'=>$row); continue; }
             $created++;
         }
 
@@ -148,10 +172,40 @@ add_action('admin_post_mth_import_csv', function() {
     }
     fclose($h);
 
+    if (!empty($errors)) {
+        set_transient('mth_csv_import_errors', $errors, HOUR_IN_SECONDS);
+    } else {
+        delete_transient('mth_csv_import_errors');
+    }
+
     wp_redirect(add_query_arg(array(
         'imported' => $processed,
         'created'  => $created,
         'updated'  => $updated,
     ), admin_url('edit.php?post_type=mth_product&page=mth-csv-tool')));
+    exit;
+});
+
+/* 下載 error.csv */
+add_action('admin_post_mth_download_csv_errors', function() {
+    if (!current_user_can('manage_options')) wp_die('No permission');
+    if (!isset($_GET['_wpnonce']) || !wp_verify_nonce($_GET['_wpnonce'], 'mth_csv_errors')) wp_die('Bad nonce');
+    $errors = get_transient('mth_csv_import_errors');
+    if (empty($errors)) wp_die('無錯誤資料');
+
+    header('Content-Type: text/csv; charset=UTF-8');
+    header('Content-Disposition: attachment; filename="mth-csv-errors-' . date('Ymd-His') . '.csv"');
+    $out = fopen('php://output', 'w');
+    fwrite($out, "\xEF\xBB\xBF");
+    fputcsv($out, array('line','reason','title','original_row'));
+    foreach ($errors as $e) {
+        fputcsv($out, array(
+            $e['line'],
+            $e['reason'],
+            isset($e['title']) ? $e['title'] : '',
+            isset($e['row']) ? implode(' | ', (array)$e['row']) : '',
+        ));
+    }
+    fclose($out);
     exit;
 });
