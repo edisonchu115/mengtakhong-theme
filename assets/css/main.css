@@ -1387,3 +1387,59 @@ body.lang-en .mobile-nav-logo-name { display: none !important; }
   .rv-meta { font-size: .62rem; }
 }
 
+
+/* ────────────────────────────────────────────────
+   2026-06-15 — UI/UX polish (A+B+C)
+   A: prefers-reduced-motion / B: focus rings / C: hover timing
+   參考：UI-UX-Pro-Max, Impeccable, animations.dev
+   ──────────────────────────────────────────────── */
+
+/* A — 用戶 OS 開咗「減少動畫」就停 transition/animation */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* B — Keyboard focus ring：B2B 客戶 tab 瀏覽時清楚見到 */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #D4AF37;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+/* 深色背景區嘅 focus ring（hero、section-dark、footer）— 加白色 inset 增強對比 */
+.hero a:focus-visible,
+.section-dark a:focus-visible,
+.section-dark button:focus-visible,
+footer a:focus-visible,
+footer button:focus-visible,
+footer input:focus-visible,
+footer select:focus-visible {
+  outline-color: #D4AF37;
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, .25);
+}
+
+/* C — 統一 hover transition (200ms, material easing) */
+:root {
+  --mth-trans-fast: 150ms cubic-bezier(.4, 0, .2, 1);
+  --mth-trans: 200ms cubic-bezier(.4, 0, .2, 1);
+  --mth-trans-slow: 300ms cubic-bezier(.4, 0, .2, 1);
+}
+a, button, .prod-card, .carousel-card, .cat-btn, .social-btn,
+.mth-pill, .footer-social a, .sf-btn, .stat-box {
+  transition: background-color var(--mth-trans),
+              color var(--mth-trans),
+              border-color var(--mth-trans),
+              box-shadow var(--mth-trans),
+              transform var(--mth-trans);
+}
