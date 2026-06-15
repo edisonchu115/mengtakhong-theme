@@ -3,9 +3,9 @@
 <!-- Hero -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-eyebrow">Meng Tak Hong International · Est. 1998</div>
-    <h1>澳門 <span>洋酒飲品</span><br>批發代理</h1>
-    <p>專業B2B批發服務 · 威士忌 · 干邑 · 葡萄酒 · 日本酒 · 韓國飲品</p>
+    <div class="hero-eyebrow"><?php echo esc_html(mth_text('hero_eyebrow', 'Meng Tak Hong International · Est. 1998')); ?></div>
+    <h1><?php echo esc_html(mth_text('hero_title_1', '澳門')); ?> <span><?php echo esc_html(mth_text('hero_title_2', '洋酒飲品')); ?></span><br><?php echo esc_html(mth_text('hero_title_3', '批發代理')); ?></h1>
+    <p><?php echo esc_html(mth_text('hero_subtitle', '專業B2B批發服務 · 威士忌 · 干邑 · 葡萄酒 · 日本酒 · 韓國飲品')); ?></p>
   </div>
 </section>
 
@@ -13,9 +13,9 @@
 <div class="section-dark">
   <div class="section-dark-inner">
     <div class="section-header">
-      <div class="eyebrow">Our Categories</div>
-      <h2 class="white">產品分類</h2>
-      <p class="white">覆蓋全線洋酒、飲品及食品</p>
+      <div class="eyebrow"><?php echo esc_html(mth_text('cathdr_eyebrow', 'Our Categories')); ?></div>
+      <h2 class="white"><?php echo esc_html(mth_text('cathdr_title', '產品分類')); ?></h2>
+      <p class="white"><?php echo esc_html(mth_text('cathdr_subtitle', '覆蓋全線洋酒、飲品及食品')); ?></p>
       <div class="divider-gold"></div>
     </div>
     <div class="cat-btn-grid">
@@ -154,10 +154,10 @@ foreach ($carousels as $c):
 <div class="stats-section">
   <div class="stats-inner">
     <?php $total = (int) wp_count_posts('mth_product')->publish; ?>
-    <div class="stat-item"><div class="num"><?php echo $total; ?><span>+</span></div><div class="lbl">款產品</div></div>
-    <div class="stat-item"><div class="num"><span>25</span>+</div><div class="lbl">年行業經驗</div></div>
-    <div class="stat-item"><div class="num">8</div><div class="lbl">產品系列</div></div>
-    <div class="stat-item"><div class="num">B2B</div><div class="lbl">專業批發服務</div></div>
+    <div class="stat-item"><div class="num"><?php echo $total; ?><span>+</span></div><div class="lbl"><?php echo esc_html(mth_text('stat1_label', '款產品')); ?></div></div>
+    <div class="stat-item"><div class="num"><span><?php echo esc_html(mth_text('stat2_num', '25')); ?></span>+</div><div class="lbl"><?php echo esc_html(mth_text('stat2_label', '年行業經驗')); ?></div></div>
+    <div class="stat-item"><div class="num"><?php echo esc_html(mth_text('stat3_num', '8')); ?></div><div class="lbl"><?php echo esc_html(mth_text('stat3_label', '產品系列')); ?></div></div>
+    <div class="stat-item"><div class="num"><?php echo esc_html(mth_text('stat4_num', 'B2B')); ?></div><div class="lbl"><?php echo esc_html(mth_text('stat4_label', '專業批發服務')); ?></div></div>
   </div>
 </div>
 

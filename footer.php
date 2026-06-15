@@ -1,19 +1,31 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-grid">
+      <?php
+        $c_zh    = mth_text('company_zh', '明德行國際有限公司');
+        $c_en    = mth_text('company_en', 'Meng Tak Hong International Co., Ltd.');
+        $c_est   = mth_text('company_est', 'Est. 1998');
+        $c_addr1 = mth_text('company_address', '澳門黑沙環慕拉士大馬路195號');
+        $c_addr2 = mth_text('company_address2', '南嶺工業大廈4樓F');
+        $c_ph1   = mth_text('company_phone1', '+853 28415128');
+        $c_ph2   = mth_text('company_phone2', '+853 28584838');
+        $c_mail  = mth_text('company_email', 'info@mengtakhong.com');
+        $tel1 = preg_replace('/[^\d+]/', '', $c_ph1);
+        $tel2 = preg_replace('/[^\d+]/', '', $c_ph2);
+      ?>
       <div class="footer-logo">
-        <img src="<?php echo content_url('/uploads/LOGO.jpg'); ?>" alt="明德行" onerror="this.style.display='none'">
-        <div class="company-zh">明德行國際有限公司</div>
-        <div class="company-en">Meng Tak Hong International Co., Ltd.</div>
-        <div class="est">Est. 1998</div>
+        <img src="<?php echo content_url('/uploads/LOGO.jpg'); ?>" alt="<?php echo esc_attr($c_zh); ?>" onerror="this.style.display='none'">
+        <div class="company-zh"><?php echo esc_html($c_zh); ?></div>
+        <div class="company-en"><?php echo esc_html($c_en); ?></div>
+        <div class="est"><?php echo esc_html($c_est); ?></div>
         <address>
-          澳門黑沙環慕拉士大馬路195號<br>南嶺工業大廈4樓F<br><br>
-          <a href="tel:+85328415128">&#128222; +853 28415128</a> / <a href="tel:+85328584838">+853 28584838</a><br>
-          <a href="mailto:info@mengtakhong.com">&#9993; info@mengtakhong.com</a>
+          <?php echo esc_html($c_addr1); ?><br><?php echo esc_html($c_addr2); ?><br><br>
+          <a href="tel:<?php echo esc_attr($tel1); ?>">&#128222; <?php echo esc_html($c_ph1); ?></a><?php if ($c_ph2): ?> / <a href="tel:<?php echo esc_attr($tel2); ?>"><?php echo esc_html($c_ph2); ?></a><?php endif; ?><br>
+          <a href="mailto:<?php echo esc_attr($c_mail); ?>">&#9993; <?php echo esc_html($c_mail); ?></a>
         </address>
       </div>
       <div class="footer-col">
-        <h4>產品分類</h4>
+        <h4><?php echo esc_html(mth_text('footer_cats_title', '產品分類')); ?></h4>
         <ul>
           <li><a href="<?php echo home_url('/product-category/whisky/'); ?>">威士忌</a></li>
           <li><a href="<?php echo home_url('/product-category/cognac/'); ?>">干邑/拔蘭地</a></li>
@@ -26,38 +38,38 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h4>訂閱新到貨</h4>
+        <h4><?php echo esc_html(mth_text('subs_title', '訂閱新到貨')); ?></h4>
         <form class="newsletter-form" id="newsletter-form" method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
           <input type="hidden" name="action" value="mth_newsletter_subscribe">
           <?php wp_nonce_field('mth_newsletter', 'mth_newsletter_nonce'); ?>
-          <input type="text" name="nl_name" placeholder="稱呼" required>
+          <input type="text" name="nl_name" placeholder="<?php echo esc_attr(mth_text('subs_name_ph', '稱呼')); ?>" required>
           <select name="nl_method" required>
-            <option value="">聯絡方式</option>
+            <option value=""><?php echo esc_html(mth_text('subs_method_ph', '聯絡方式')); ?></option>
             <option value="email">Email</option>
             <option value="whatsapp">WhatsApp</option>
             <option value="ig">Instagram</option>
             <option value="fb">Facebook</option>
           </select>
-          <input type="text" name="nl_contact" placeholder="輸入聯絡方式" required>
-          <button type="submit">訂閱</button>
+          <input type="text" name="nl_contact" placeholder="<?php echo esc_attr(mth_text('subs_contact_ph', '輸入聯絡方式')); ?>" required>
+          <button type="submit"><?php echo esc_html(mth_text('subs_btn', '訂閱')); ?></button>
           <div class="nl-msg" id="nl-msg"></div>
         </form>
       </div>
       <div class="footer-col">
-        <h4>聯絡我們</h4>
+        <h4><?php echo esc_html(mth_text('footer_contact_title', '聯絡我們')); ?></h4>
         <div class="footer-social">
-          <a href="https://www.facebook.com/profile.php?id=61555744448402" class="social-btn fb" target="_blank" rel="noopener noreferrer">
+          <a href="<?php echo esc_url(mth_text('social_fb_url', 'https://www.facebook.com/profile.php?id=61555744448402')); ?>" class="social-btn fb" target="_blank" rel="noopener noreferrer">
             Facebook
           </a>
-          <a href="https://www.instagram.com/mengtakhong.mo/" class="social-btn ig" target="_blank" rel="noopener noreferrer">
+          <a href="<?php echo esc_url(mth_text('social_ig_url', 'https://www.instagram.com/mengtakhong.mo/')); ?>" class="social-btn ig" target="_blank" rel="noopener noreferrer">
             Instagram
           </a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; <?php echo date('Y'); ?> 明德行國際有限公司 Meng Tak Hong International Co., Ltd.</span>
-      <span>澳門洋酒飲品批發代理</span>
+      <span>&copy; <?php echo date('Y'); ?> <?php echo esc_html(mth_text('company_zh', '明德行國際有限公司')); ?> <?php echo esc_html(mth_text('company_en', 'Meng Tak Hong International Co., Ltd.')); ?></span>
+      <span><?php echo esc_html(mth_text('footer_tagline', '澳門洋酒飲品批發代理')); ?></span>
     </div>
   </div>
 </footer>
