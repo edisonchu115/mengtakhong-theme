@@ -41,7 +41,8 @@ function mth_text_fields() {
             'title' => '📊 數字統計區',
             'desc'  => '首頁底部 4 個數字（第 1 個係自動計算總產品數，可改 label）',
             'fields' => array(
-                'stat1_label' => array('label'=>'統計 1 標籤 (總產品數會自動算)','default'=>'款產品'),
+                'stat1_num'   => array('label'=>'統計 1 數字','default'=>'234'),
+                'stat1_label' => array('label'=>'統計 1 標籤','default'=>'款產品'),
                 'stat2_num'   => array('label'=>'統計 2 數字','default'=>'25'),
                 'stat2_label' => array('label'=>'統計 2 標籤','default'=>'年行業經驗'),
                 'stat3_num'   => array('label'=>'統計 3 數字','default'=>'8'),
