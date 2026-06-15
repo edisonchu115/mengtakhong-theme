@@ -71,7 +71,7 @@ add_action('quick_edit_custom_box', function($column_name, $post_type) {
 /* ── 後台產品：Bulk Edit（批量）── */
 add_action('bulk_edit_custom_box', function($column_name, $post_type) {
     if ($post_type !== 'mth_product') return;
-    if (!in_array($column_name, array('origin_country','mth_source','mth_brand_col'), true)) return;
+    if (!in_array($column_name, array('origin_country','mth_source','mth_brand_col','mth_type_col'), true)) return;
     static $nonce_done = false;
     if (!$nonce_done) {
         wp_nonce_field('mth_bulk_edit', 'mth_bulk_edit_nonce');
@@ -100,6 +100,17 @@ add_action('bulk_edit_custom_box', function($column_name, $post_type) {
             }
             echo '<option value="other">其他</option>';
             echo '</select></label>';
+            break;
+        case 'mth_type_col':
+            $cat_slug = mth_get_admin_filter_cat_slug();
+            if (!$cat_slug) break;
+            $type_map = mth_type_map($cat_slug);
+            if (empty($type_map)) break;
+            echo '<label class="inline-edit-group"><span class="title">種類</span><select name="bulk_type_manual"><option value="-1">— 不變 —</option><option value="">清除（自動）</option>';
+            foreach ($type_map as $k => $info) {
+                printf('<option value="%s">%s</option>', esc_attr($k), esc_html($info['label']));
+            }
+            echo '</select><p style="font-size:11px;color:#888;margin:4px 0 0 0;">批量改種類 = 單選（覆蓋舊值）</p></label>';
             break;
     }
     echo '</div></fieldset>';
@@ -162,6 +173,22 @@ add_action('save_post_mth_product', function($post_id) {
                 }
             }
         }
+        if (isset($_POST['bulk_type_manual']) && $_POST['bulk_type_manual'] !== '-1') {
+            $cat = mth_get_product_primary_cat($post_id);
+            if ($cat) {
+                $type = sanitize_text_field($_POST['bulk_type_manual']);
+                if ($type === '') {
+                    update_post_meta($post_id, 'mth_types_manual', '');
+                } else {
+                    $valid_t = array_keys(mth_type_map($cat));
+                    if (in_array($type, $valid_t, true)) {
+                        update_post_meta($post_id, 'mth_types_manual', $type);
+                    }
+                }
+            }
+        }
+        // Audit cache 失效
+        delete_transient('mth_audit_stats_v1');
     }
 });
 
