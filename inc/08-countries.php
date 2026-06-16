@@ -22,6 +22,25 @@ function mth_countries() {
         'taiwan'    => array('flag' => '🇹🇼', 'zh' => '台灣',   'iso' => 'tw'),
         'thailand'  => array('flag' => '🇹🇭', 'zh' => '泰國',   'iso' => 'th'),
         'vietnam'   => array('flag' => '🇻🇳', 'zh' => '越南',   'iso' => 'vn'),
+        // ── 烈酒/力嬌進口新增國家 ──
+        'uk'          => array('flag' => '🇬🇧', 'zh' => '英國',   'iso' => 'gb'),
+        'england'     => array('flag' => "\u{1F3F4}\u{E0067}\u{E0062}\u{E0065}\u{E006E}\u{E0067}\u{E007F}", 'zh' => '英格蘭', 'iso' => 'gb-eng'),
+        'germany'     => array('flag' => '🇩🇪', 'zh' => '德國',   'iso' => 'de'),
+        'netherlands' => array('flag' => '🇳🇱', 'zh' => '荷蘭',   'iso' => 'nl'),
+        'belgium'     => array('flag' => '🇧🇪', 'zh' => '比利時', 'iso' => 'be'),
+        'russia'      => array('flag' => '🇷🇺', 'zh' => '俄羅斯', 'iso' => 'ru'),
+        'sweden'      => array('flag' => '🇸🇪', 'zh' => '瑞典',   'iso' => 'se'),
+        'finland'     => array('flag' => '🇫🇮', 'zh' => '芬蘭',   'iso' => 'fi'),
+        'denmark'     => array('flag' => '🇩🇰', 'zh' => '丹麥',   'iso' => 'dk'),
+        'brazil'      => array('flag' => '🇧🇷', 'zh' => '巴西',   'iso' => 'br'),
+        'guatemala'   => array('flag' => '🇬🇹', 'zh' => '危地馬拉', 'iso' => 'gt'),
+        'mexico'      => array('flag' => '🇲🇽', 'zh' => '墨西哥', 'iso' => 'mx'),
+        'jamaica'     => array('flag' => '🇯🇲', 'zh' => '牙買加', 'iso' => 'jm'),
+        'puerto-rico' => array('flag' => '🇵🇷', 'zh' => '波多黎各', 'iso' => 'pr'),
+        'barbados'    => array('flag' => '🇧🇧', 'zh' => '巴巴多斯', 'iso' => 'bb'),
+        'cuba'        => array('flag' => '🇨🇺', 'zh' => '古巴',   'iso' => 'cu'),
+        'trinidad'    => array('flag' => '🇹🇹', 'zh' => '千里達', 'iso' => 'tt'),
+        'austria'     => array('flag' => '🇦🇹', 'zh' => '奧地利', 'iso' => 'at'),
     );
 }
 

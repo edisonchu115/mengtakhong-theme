@@ -21,6 +21,20 @@ $cat_info = [
 $info = $cat_info[$cat_slug] ?? ['en'=>$cat_name, 'desc'=>''];
 
 get_header();
+
+// ── 整頁 body 快取（只對訪客）：把重型 query 輸出存 transient ──
+// admin / 登入用戶永遠睇實時，改完即見；訪客睇 cache，由 0.3 秒出頁
+$mth_cat_cache_key  = 'mth_cat_body_' . $cat_slug . '_v' . (int) get_option('mth_cat_cache_ver', 1);
+$mth_cat_use_cache  = !is_user_logged_in();
+if ($mth_cat_use_cache) {
+    $mth_cached = get_transient($mth_cat_cache_key);
+    if ($mth_cached !== false) {
+        echo $mth_cached;
+        get_footer();
+        return;
+    }
+    ob_start();
+}
 ?>
 
 <div class="breadcrumb">
@@ -294,4 +308,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<?php get_footer(); ?>
+<?php
+if ($mth_cat_use_cache) {
+    $mth_cat_html = ob_get_clean();
+    set_transient($mth_cat_cache_key, $mth_cat_html, DAY_IN_SECONDS);
+    echo $mth_cat_html;
+}
+get_footer(); ?>
