@@ -2,6 +2,17 @@
 // SEO: Schema, robots, GA, html lang
 if (!defined('ABSPATH')) exit;
 
+/* 已發佈產品實數（5 分鐘 cache，避免每次 query）*/
+function mth_product_count() {
+    $c = get_transient('mth_seo_prod_count');
+    if ($c === false) {
+        $obj = wp_count_posts('mth_product');
+        $c = $obj ? (int) $obj->publish : 0;
+        set_transient('mth_seo_prod_count', $c, 5 * MINUTE_IN_SECONDS);
+    }
+    return $c;
+}
+
 /* ── Schema.org Product JSON-LD（單品頁自動產出）── */
 add_action('wp_head', function() {
     if (!is_singular('mth_product')) return;
@@ -59,8 +70,8 @@ add_filter('robots_txt', function($output, $public) {
 
 /* ── GA / GTM slot（將來貼 ID 即用）── */
 add_action('wp_head', function() {
-    $ga_id  = ''; // 將來填入 G-XXXXXXX
-    $gtm_id = ''; // 將來填入 GTM-XXXXXXX
+    $ga_id  = get_option('mth_ga4_id', '');  // 喺 wp_options 填 G-XXXXXXX 即生效
+    $gtm_id = get_option('mth_gtm_id', '');  // GTM-XXXXXXX（如有）
     if ($ga_id) {
         echo "<!-- Google Analytics -->\n";
         echo "<script async src='https://www.googletagmanager.com/gtag/js?id=" . esc_attr($ga_id) . "'></script>\n";
@@ -90,10 +101,11 @@ add_action('wp_head', function() {
 
     // 首頁
     if (is_front_page()) {
-        $desc = '明德行國際有限公司 Meng Tak Hong - 澳門本地酒水飲品批發代理，成立於1998年，超過25年行業經驗。代理威士忌、干邑、葡萄酒、日本酒、韓國飲品、中國白酒等683款產品，服務澳門餐廳、酒吧、酒店、超市。';
+        $pc = mth_product_count();
+        $desc = '明德行國際有限公司 Meng Tak Hong - 澳門本地酒水飲品批發代理，成立於1998年，超過25年行業經驗。代理威士忌、干邑、葡萄酒、日本酒、韓國飲品、中國白酒等' . ($pc ? $pc . '款' : '多款') . '產品，服務澳門餐廳、酒吧、酒店、超市。';
         $kw   = '明德行,Meng Tak Hong,mengtakhong,澳門酒水批發,澳門洋酒,澳門威士忌,澳門干邑,澳門葡萄酒,澳門飲品代理,酒水批發澳門,洋酒批發,威士忌批發,干邑批發,日本酒批發,韓國飲品,中國白酒,澳門B2B';
         $og_title = '明德行國際有限公司 | 澳門洋酒飲品批發代理';
-        $og_desc  = '澳門本地酒水飲品批發代理，成立於1998年。683款產品，服務餐廳、酒吧、酒店、超市。';
+        $og_desc  = '澳門本地酒水飲品批發代理，成立於1998年。' . ($pc ? $pc . '款' : '多款') . '產品，服務餐廳、酒吧、酒店、超市。';
         $og_img   = $logo_url;
         $og_url   = 'https://mengtakhong-mo.com';
         echo '<meta name="description" content="' . esc_attr($desc) . '">' . "\n";
@@ -147,7 +159,7 @@ add_action('wp_head', function() {
 
     // 其他頁面
     } else {
-        $default_desc = '澳門洋酒飲品批發代理商，代理威士忌、干邑、日本產品、葡萄酒等683款產品，服務澳門各大酒店、餐廳及零售業。歡迎B2B查詢。';
+        $default_desc = '澳門洋酒飲品批發代理商，代理威士忌、干邑、日本產品、葡萄酒等' . (mth_product_count() ?: '多') . '款產品，服務澳門各大酒店、餐廳及零售業。歡迎B2B查詢。';
         echo '<meta name="description" content="' . esc_attr($default_desc) . '">' . "\n";
         echo '<meta property="og:title" content="' . esc_attr(get_the_title() ?: $site_name) . ' | ' . esc_attr($site_name) . '">' . "\n";
         echo '<meta property="og:description" content="' . esc_attr($default_desc) . '">' . "\n";
