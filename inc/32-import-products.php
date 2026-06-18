@@ -9,6 +9,7 @@ function mth_imp_batches() {
         'japan'  => array('label' => '🇯🇵 日本進口',  'dir' => 'products-import-japan'),
         'beer'   => array('label' => '🥤 汽水啤酒',    'dir' => 'products-import-beer'),
         'liquor' => array('label' => '🥃 烈酒力嬌',    'dir' => 'products-import-liquor'),
+        'whisky' => array('label' => '🥃 進口威士忌',  'dir' => 'products-import-whisky'),
     );
 }
 
