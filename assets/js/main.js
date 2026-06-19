@@ -627,3 +627,22 @@ document.addEventListener('DOMContentLoaded', function() {
     section.style.display = '';
   });
 })();
+
+/* ── 圖片防偷（增加下載難度）──
+   阻擋圖片上嘅右鍵選單 + 拖曳。注意：呢啲只係前端阻嚇，
+   擋到一般人右鍵另存/拖拉，但擋唔到截圖或開發者工具，無一個網站做到 100%。*/
+(function () {
+  function isProtectedImg(t) {
+    if (!t) return false;
+    if (t.tagName === 'IMG') return true;
+    return !!(t.closest && t.closest('.prod-card-img, .qv-img-wrap, .brand-card, .brand-marquee, .carousel-card, .prod-img-zoom'));
+  }
+  // 右鍵：喺圖片上唔彈選單（其他地方正常右鍵）
+  document.addEventListener('contextmenu', function (e) {
+    if (isProtectedImg(e.target)) e.preventDefault();
+  }, false);
+  // 禁止拖曳圖片出去另存
+  document.addEventListener('dragstart', function (e) {
+    if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+  }, false);
+})();

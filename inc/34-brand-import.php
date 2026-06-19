@@ -120,6 +120,7 @@ add_action('admin_post_mth_clear_brands', function() {
     $ids = get_posts(array('post_type'=>'mth_brand','post_status'=>array('publish','draft','pending'),'numberposts'=>-1,'fields'=>'ids'));
     $n = 0;
     foreach ($ids as $id) { if (wp_trash_post($id)) $n++; }
+    do_action('litespeed_purge_all');
     wp_redirect(admin_url('edit.php?post_type=mth_brand&page=mth-brand-import&cleared=' . $n));
     exit;
 });
@@ -142,6 +143,7 @@ add_action('admin_post_mth_apply_brand_import', function() {
         if ($rn) { $att = mth_brand_register_one($rn, $name); if ($att) set_post_thumbnail($pid, $att); }
         $created++;
     }
+    do_action('litespeed_purge_all');
     wp_redirect(admin_url('edit.php?post_type=mth_brand&page=mth-brand-import&done=' . $created . '&skip=' . $skipped));
     exit;
 });

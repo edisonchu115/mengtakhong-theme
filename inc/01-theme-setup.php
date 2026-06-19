@@ -20,11 +20,11 @@ function mth_scripts() {
     wp_enqueue_style( 'google-fonts',
         'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;700;900&display=swap',
         [], null );
-    wp_enqueue_style( 'mth-main', get_template_directory_uri() . '/assets/css/main.css', [], '2.7.4' );
+    wp_enqueue_style( 'mth-main', get_template_directory_uri() . '/assets/css/main.css', [], '2.7.5' );
     wp_enqueue_script( 'mth-products-data',
         get_template_directory_uri() . '/assets/js/products-data.js', [], '1.0.0', true );
     wp_enqueue_script( 'mth-main',
-        get_template_directory_uri() . '/assets/js/main.js', ['mth-products-data'], '2.5.1', true );
+        get_template_directory_uri() . '/assets/js/main.js', ['mth-products-data'], '2.5.2', true );
 
     wp_localize_script( 'mth-main', 'MTH_WP', [
         'home_url'    => home_url('/'),

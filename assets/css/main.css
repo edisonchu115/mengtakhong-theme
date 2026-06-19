@@ -180,16 +180,25 @@ ul { list-style: none; }
 .brand-marquee-track { display: flex; width: max-content; animation: brand-scroll 60s linear infinite; }
 .brand-marquee:hover .brand-marquee-track { animation-play-state: paused; }
 .brand-marquee-item {
-  flex: 0 0 auto; width: 160px; height: 72px;
+  flex: 0 0 auto; width: 138px; height: 70px;
   display: flex; align-items: center; justify-content: center;
-  padding: 0 26px; box-sizing: content-box;
+  padding: 0 20px; box-sizing: content-box;
 }
 .brand-marquee-item img { max-width: 100%; max-height: 100%; object-fit: contain; }
 @keyframes brand-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .brand-marquee-track { animation: none; } }
 @media (max-width: 760px) {
-  .brand-marquee-section { padding: 18px 0; }
-  .brand-marquee-item { width: 108px; height: 54px; padding: 0 16px; }
+  .brand-marquee-section { padding: 16px 0; }
+  .brand-marquee-item { width: 92px; height: 46px; padding: 0 13px; }
+  /* 手機部分瀏覽器 mask 支援差，移除避免整條消失 */
+  .brand-marquee { -webkit-mask-image: none; mask-image: none; }
+}
+
+/* ── 圖片防偷：禁止拖曳/選取（配合 JS 禁右鍵）── */
+.prod-card-img img, .qv-img, .brand-card img, .brand-marquee-item img,
+.carousel-card img, .prod-img-zoom img {
+  -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; user-drag: none;
+  -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
 }
 
 /* ── Breadcrumb ── */
@@ -984,9 +993,9 @@ body.lang-en .mobile-nav-logo-name { display: none !important; }
   gap: 28px; padding: 30px;
 }
 .qv-img-wrap {
-  aspect-ratio: 1/1; background: #fafaf6;
+  aspect-ratio: 1/1; background: #FFFFFF;
   border-radius: 10px; display: flex; align-items: center; justify-content: center;
-  border: 1px solid #f0ebe0; position: relative;
+  border: 1px solid #eee; position: relative;
 }
 .qv-img { max-width: 88%; max-height: 88%; object-fit: contain; }
 .qv-flag {
