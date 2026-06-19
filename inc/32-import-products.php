@@ -12,6 +12,7 @@ function mth_imp_batches() {
         'whisky' => array('label' => '🥃 進口威士忌',  'dir' => 'products-import-whisky'),
         'cognac' => array('label' => '🍇 拔蘭地干邑',  'dir' => 'products-import-cognac'),
         'wine'   => array('label' => '🍷 葡萄酒香檳',  'dir' => 'products-import-wine'),
+        'agencywine' => array('label' => '🍷 代理葡萄酒', 'dir' => 'products-import-agencywine'),
     );
 }
 

@@ -41,6 +41,7 @@ function mth_countries() {
         'cuba'        => array('flag' => '🇨🇺', 'zh' => '古巴',   'iso' => 'cu'),
         'trinidad'    => array('flag' => '🇹🇹', 'zh' => '千里達', 'iso' => 'tt'),
         'austria'     => array('flag' => '🇦🇹', 'zh' => '奧地利', 'iso' => 'at'),
+        'georgia'     => array('flag' => '🇬🇪', 'zh' => '格魯吉亞', 'iso' => 'ge'),
     );
 }
 
