@@ -10,6 +10,8 @@ function mth_imp_batches() {
         'beer'   => array('label' => '🥤 汽水啤酒',    'dir' => 'products-import-beer'),
         'liquor' => array('label' => '🥃 烈酒力嬌',    'dir' => 'products-import-liquor'),
         'whisky' => array('label' => '🥃 進口威士忌',  'dir' => 'products-import-whisky'),
+        'cognac' => array('label' => '🍇 拔蘭地干邑',  'dir' => 'products-import-cognac'),
+        'wine'   => array('label' => '🍷 葡萄酒香檳',  'dir' => 'products-import-wine'),
     );
 }
 
