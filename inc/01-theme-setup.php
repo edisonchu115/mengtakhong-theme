@@ -20,7 +20,7 @@ function mth_scripts() {
     wp_enqueue_style( 'google-fonts',
         'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;700;900&display=swap',
         [], null );
-    wp_enqueue_style( 'mth-main', get_template_directory_uri() . '/assets/css/main.css', [], '2.7.0' );
+    wp_enqueue_style( 'mth-main', get_template_directory_uri() . '/assets/css/main.css', [], '2.7.3' );
     wp_enqueue_script( 'mth-products-data',
         get_template_directory_uri() . '/assets/js/products-data.js', [], '1.0.0', true );
     wp_enqueue_script( 'mth-main',

@@ -57,7 +57,7 @@ get_header();
           </div>
           <div class="prod-card-body">
             <h4><?php echo esc_html($name_zh); ?></h4>
-            <?php if($name_en): ?><div class="en-name" translate="no"><?php echo esc_html($name_en); ?></div><?php endif; ?>
+            <div class="en-name" translate="no"><?php echo esc_html($name_en); ?></div>
             <div class="prod-card-meta">
               <?php if($spec): ?><span class="spec"><?php echo esc_html($spec); ?></span><?php endif; ?>
               <?php if($abv): ?><span class="abv"><?php echo esc_html($abv); ?>%</span><?php endif; ?>
