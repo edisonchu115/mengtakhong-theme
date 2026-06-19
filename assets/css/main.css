@@ -127,15 +127,16 @@ ul { list-style: none; }
   cursor: pointer;
   transition: transform .22s, box-shadow .22s;
   text-decoration: none;
-  display: block;
+  display: flex; flex-direction: column; height: 100%;
 }
 .prod-card:hover { transform: none; border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold), 0 8px 28px rgba(0,0,0,.13); }
 .prod-card-img {
-  height: 180px;
+  height: 180px; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
   font-size: 2.8rem;
   position: relative;
   background: #FFFFFF;
+  padding: 16px 16px 6px; box-sizing: border-box;
 }
 .prod-card-img img { width: 100%; height: 100%; object-fit: contain; }
 .prod-img-placeholder {
@@ -143,7 +144,7 @@ ul { list-style: none; }
   width: 100%; height: 100%; background: #faf6ec; color: #d4af37;
   opacity: .65;
 }
-.prod-card-body { padding: 14px 16px 18px; display: flex; flex-direction: column; min-height: 120px; }
+.prod-card-body { padding: 14px 16px 18px; display: flex; flex-direction: column; flex: 1 1 auto; min-height: 120px; }
 .prod-card-body h4 {
   font-size: .93rem; color: var(--navy); font-weight: 500; margin-bottom: 4px; line-height: 1.35;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
@@ -1056,7 +1057,7 @@ body.lang-en .mobile-nav-logo-name { display: none !important; }
 .mth-add-inquiry .ai-icon { font-size: 1.1rem; line-height: 1; }
 
 /* 「+」按鈕 + 「👁」快速預覽 — 產品卡 hover 出現 */
-.prod-card-wrap { position: relative; }
+.prod-card-wrap { position: relative; display: flex; }
 .prod-add-inquiry,
 .prod-quick-view {
   position: absolute; top: 6px;
