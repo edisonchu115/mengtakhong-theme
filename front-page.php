@@ -186,7 +186,7 @@ foreach ($carousels as $c):
 <!-- Stats -->
 <div class="stats-section">
   <div class="stats-inner">
-    <div class="stat-item"><div class="num"><?php echo esc_html(mth_text('stat1_num', '234')); ?><span>+</span></div><div class="lbl"><?php echo esc_html(mth_text('stat1_label', '款產品')); ?></div></div>
+    <div class="stat-item"><div class="num"><?php echo esc_html(mth_text('stat1_num', '880')); ?><span>+</span></div><div class="lbl"><?php echo esc_html(mth_text('stat1_label', '款產品')); ?></div></div>
     <div class="stat-item"><div class="num"><span><?php echo esc_html(mth_text('stat2_num', '25')); ?></span>+</div><div class="lbl"><?php echo esc_html(mth_text('stat2_label', '年行業經驗')); ?></div></div>
     <div class="stat-item"><div class="num"><?php echo esc_html(mth_text('stat3_num', '8')); ?></div><div class="lbl"><?php echo esc_html(mth_text('stat3_label', '產品系列')); ?></div></div>
     <div class="stat-item"><div class="num"><?php echo esc_html(mth_text('stat4_num', 'B2B')); ?></div><div class="lbl"><?php echo esc_html(mth_text('stat4_label', '專業批發服務')); ?></div></div>

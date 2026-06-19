@@ -10,7 +10,7 @@
   <div class="stat-grid">
     <div class="stat-box"><div class="num"><?php echo esc_html(mth_text('about_stat1_num', '1998')); ?></div><div class="label"><?php echo esc_html(mth_text('about_stat1_label', '年成立')); ?></div></div>
     <div class="stat-box"><div class="num"><?php echo esc_html(mth_text('about_stat2_num', '25+')); ?></div><div class="label"><?php echo esc_html(mth_text('about_stat2_label', '年行業經驗')); ?></div></div>
-    <div class="stat-box"><div class="num"><?php echo esc_html(mth_text('about_stat3_num', '234')); ?>+</div><div class="label"><?php echo esc_html(mth_text('about_stat3_label', '款產品')); ?></div></div>
+    <div class="stat-box"><div class="num"><?php echo esc_html(mth_text('about_stat3_num', '880')); ?>+</div><div class="label"><?php echo esc_html(mth_text('about_stat3_label', '款產品')); ?></div></div>
     <div class="stat-box"><div class="num"><?php echo esc_html(mth_text('about_stat4_num', '8')); ?></div><div class="label"><?php echo esc_html(mth_text('about_stat4_label', '大產品系列')); ?></div></div>
     <div class="stat-box"><div class="num"><?php echo esc_html(mth_text('about_stat5_num', 'B2B')); ?></div><div class="label"><?php echo esc_html(mth_text('about_stat5_label', '專業批發服務')); ?></div></div>
   </div>

@@ -281,24 +281,7 @@
 })();
 </script>
 
-<!-- 防盜圖 -->
-<script>
-document.addEventListener('contextmenu', function(e) {
-    if (e.target.tagName === 'IMG') {
-        e.preventDefault();
-        return false;
-    }
-});
-document.addEventListener('dragstart', function(e) {
-    if (e.target.tagName === 'IMG') {
-        e.preventDefault();
-        return false;
-    }
-});
-</script>
-<style>
-img { -webkit-user-select: none; -moz-user-select: none; user-select: none; }
-</style>
+<!-- 防盜圖：已統一喺 main.js + main.css 處理（禁右鍵/拖曳/選取）-->
 
 <!-- 年齡驗證 -->
 <div id="age-gate-overlay">

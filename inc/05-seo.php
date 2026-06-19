@@ -2,15 +2,11 @@
 // SEO: Schema, robots, GA, html lang
 if (!defined('ABSPATH')) exit;
 
-/* 已發佈產品實數（5 分鐘 cache，避免每次 query）*/
+/* 文案/SEO 展示用產品總數：跟首頁統計「stat1_num」一致（可喺主題文字改），統一 880+ */
 function mth_product_count() {
-    $c = get_transient('mth_seo_prod_count');
-    if ($c === false) {
-        $obj = wp_count_posts('mth_product');
-        $c = $obj ? (int) $obj->publish : 0;
-        set_transient('mth_seo_prod_count', $c, 5 * MINUTE_IN_SECONDS);
-    }
-    return $c;
+    $n = function_exists('mth_text') ? mth_text('stat1_num', '880') : '880';
+    $n = preg_replace('/\D/', '', $n);
+    return $n !== '' ? $n : '880';
 }
 
 /* ── Schema.org Product JSON-LD（單品頁自動產出）── */

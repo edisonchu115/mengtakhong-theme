@@ -297,6 +297,12 @@ ul { list-style: none; }
 .social-btn.wa  { background: #25D366; color: #fff; }
 .social-btn.fb  { background: #1877F2; color: #fff; }
 .social-btn.ig  { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; }
+/* FB/IG 按鈕統一闊度 + 對齊 */
+.footer-social { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+.footer-social .social-btn { width: 100%; max-width: 190px; justify-content: center; padding: 10px 14px; }
+/* 訂閱表單 + FB/IG 錨定欄底 → 兩個按鈕同一底線對齊 */
+.footer-col { display: flex; flex-direction: column; }
+.footer-col .newsletter-form, .footer-col .footer-social { margin-top: auto; }
 .map-wrap iframe { width: 100%; height: 360px; border: none; border-radius: 12px; border: 1px solid var(--border); }
 
 /* ── Footer ── */
