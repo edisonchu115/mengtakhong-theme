@@ -9,6 +9,39 @@
   </div>
 </section>
 
+<!-- Brand Marquee：橫向自動捲動，直接讀 mth_brand（加新品牌自動更新）-->
+<?php
+$mth_marquee = new WP_Query(array(
+  'post_type'      => 'mth_brand',
+  'posts_per_page' => -1,
+  'post_status'    => 'publish',
+  'orderby'        => 'title',
+  'order'          => 'ASC',
+));
+$mth_logos = array();
+if ($mth_marquee->have_posts()) {
+  while ($mth_marquee->have_posts()) { $mth_marquee->the_post();
+    $u = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+    if ($u) $mth_logos[] = array('u' => $u, 't' => get_the_title());
+  }
+  wp_reset_postdata();
+}
+if (count($mth_logos) >= 4):
+  $mth_dur = max(20, count($mth_logos) * 2.5); // 速度跟品牌數自動調節，每加一個都唔會變快
+?>
+<section class="brand-marquee-section" aria-label="合作品牌">
+  <div class="brand-marquee">
+    <div class="brand-marquee-track" style="animation-duration: <?php echo esc_attr($mth_dur); ?>s;">
+      <?php for ($d = 0; $d < 2; $d++): foreach ($mth_logos as $lg): ?>
+        <div class="brand-marquee-item">
+          <img src="<?php echo esc_url($lg['u']); ?>" alt="<?php echo esc_attr($lg['t']); ?>" loading="lazy"<?php echo $d ? ' aria-hidden="true"' : ''; ?>>
+        </div>
+      <?php endforeach; endfor; ?>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
+
 <!-- Category Buttons -->
 <div class="section-dark">
   <div class="section-dark-inner">

@@ -170,6 +170,28 @@ ul { list-style: none; }
 .badge-agency-sm { display: inline-block; font-size: .65rem; color: var(--gold); border: 1px solid rgba(212,175,55,.35); padding: 1px 7px; border-radius: 20px; letter-spacing: .03em; }
 .badge-cat { display: inline-block; font-size: .7rem; background: var(--cream); color: var(--navy); border: 1px solid var(--border); padding: 2px 10px; border-radius: 20px; letter-spacing: .03em; }
 
+/* ── 品牌橫向自動捲動帶（首頁，白底無邊框，讀 mth_brand）── */
+.brand-marquee-section { background: #fff; padding: 30px 0; }
+.brand-marquee {
+  width: 100%; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.brand-marquee-track { display: flex; width: max-content; animation: brand-scroll 60s linear infinite; }
+.brand-marquee:hover .brand-marquee-track { animation-play-state: paused; }
+.brand-marquee-item {
+  flex: 0 0 auto; width: 160px; height: 72px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 26px; box-sizing: content-box;
+}
+.brand-marquee-item img { max-width: 100%; max-height: 100%; object-fit: contain; }
+@keyframes brand-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .brand-marquee-track { animation: none; } }
+@media (max-width: 760px) {
+  .brand-marquee-section { padding: 18px 0; }
+  .brand-marquee-item { width: 108px; height: 54px; padding: 0 16px; }
+}
+
 /* ── Breadcrumb ── */
 .breadcrumb { background: var(--cream); padding: 14px 40px; font-size: .8rem; color: #888; border-bottom: 1px solid var(--border); }
 .breadcrumb-inner { max-width: 1300px; margin: 0 auto; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
